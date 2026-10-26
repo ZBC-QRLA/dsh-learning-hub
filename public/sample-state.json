@@ -1,0 +1,1004 @@
+{
+  "schema": "learning-hub.state/v1",
+  "seed": true,
+  "as_of": "2026-10-26",
+  "generated_at": "2026-10-26T00:20:00+08:00",
+  "disclaimer": "演示数据（seed）：仅用于学习中枢面板的离线预览，不代表真实成绩、真实复习记录或真实学习证据。",
+  "profile": {
+    "name": "Demo Learner",
+    "stage": "Year 1",
+    "major": "Computer Science",
+    "goals": [
+      "Build foundations in Calculus, Linear Algebra, and C Programming",
+      "Practice steadily with spaced review"
+    ]
+  },
+  "current_branch": "math.calculus",
+  "branches": [
+    {
+      "id": "math.calculus",
+      "name": "Calculus",
+      "parent": "math",
+      "workspace": "",
+      "paths": [
+        "courses/calculus"
+      ],
+      "keywords": [
+        "极限",
+        "导数",
+        "微分",
+        "积分",
+        "级数",
+        "多元函数"
+      ],
+      "materials": [],
+      "status": "active",
+      "next": "第一章 函数与极限 · 极限的 ε-δ 定义",
+      "masteryAvg": 2.2,
+      "conceptCount": 11,
+      "dueCount": 3,
+      "weak": [
+        "math.calculus.limit",
+        "math.calculus.mvt"
+      ],
+      "concepts": [
+        "math.calculus.function",
+        "math.calculus.limit",
+        "math.calculus.continuity",
+        "math.calculus.derivative",
+        "math.calculus.differential",
+        "math.calculus.mvt",
+        "math.calculus.indefinite-integral",
+        "math.calculus.definite-integral",
+        "math.calculus.ode",
+        "math.calculus.multivariable",
+        "math.calculus.series"
+      ]
+    },
+    {
+      "id": "math.linear-algebra",
+      "name": "Linear Algebra",
+      "parent": "math",
+      "workspace": "",
+      "paths": [
+        "courses/linear-algebra"
+      ],
+      "keywords": [
+        "矩阵",
+        "行列式",
+        "线性方程组",
+        "向量空间",
+        "特征值",
+        "二次型"
+      ],
+      "materials": [],
+      "status": "active",
+      "next": "第二章 矩阵 · 逆矩阵与初等变换",
+      "masteryAvg": 2,
+      "conceptCount": 10,
+      "dueCount": 3,
+      "weak": [
+        "math.linear-algebra.linear-systems",
+        "math.linear-algebra.rank"
+      ],
+      "concepts": [
+        "math.linear-algebra.vectors",
+        "math.linear-algebra.matrix-ops",
+        "math.linear-algebra.determinant",
+        "math.linear-algebra.inverse",
+        "math.linear-algebra.linear-systems",
+        "math.linear-algebra.rank",
+        "math.linear-algebra.vector-space",
+        "math.linear-algebra.eigen",
+        "math.linear-algebra.orthogonality",
+        "math.linear-algebra.quadratic-form"
+      ]
+    },
+    {
+      "id": "cs.c",
+      "name": "C Programming",
+      "parent": "cs",
+      "workspace": "",
+      "paths": [
+        "courses/c"
+      ],
+      "keywords": [
+        "指针",
+        "数组",
+        "结构体",
+        "动态内存",
+        "文件",
+        "C"
+      ],
+      "materials": [],
+      "status": "active",
+      "next": "指针与数组 · 指针运算与越界检查",
+      "masteryAvg": 2.2,
+      "conceptCount": 11,
+      "dueCount": 2,
+      "weak": [
+        "cs.c.pointer"
+      ],
+      "concepts": [
+        "cs.c.types",
+        "cs.c.variables",
+        "cs.c.operators",
+        "cs.c.control-flow",
+        "cs.c.functions",
+        "cs.c.arrays",
+        "cs.c.pointer",
+        "cs.c.strings",
+        "cs.c.structs",
+        "cs.c.malloc",
+        "cs.c.file-io"
+      ]
+    }
+  ],
+  "concepts": [
+    {
+      "id": "math.calculus.function",
+      "name": "函数与初等函数",
+      "aliases": [],
+      "branches": [
+        "math.calculus"
+      ],
+      "prereq": [],
+      "related": [
+        "math.calculus.limit",
+        "math.calculus.continuity"
+      ],
+      "mastery": 4,
+      "evidence": [
+        "calculus/homework-1 1(2)",
+        "2026-09-18 课堂笔记"
+      ],
+      "misconceptions": [],
+      "sources": [],
+      "next_review": "2026-11-09"
+    },
+    {
+      "id": "math.calculus.limit",
+      "name": "极限",
+      "aliases": [],
+      "branches": [
+        "math.calculus"
+      ],
+      "prereq": [
+        "math.calculus.function"
+      ],
+      "related": [
+        "math.calculus.continuity",
+        "math.calculus.series"
+      ],
+      "mastery": 2,
+      "evidence": [
+        "calculus/homework-1 3(2)",
+        "2026-10-19 错题订正"
+      ],
+      "misconceptions": [],
+      "sources": [],
+      "next_review": "2026-10-24"
+    },
+    {
+      "id": "math.calculus.continuity",
+      "name": "连续与间断",
+      "aliases": [],
+      "branches": [
+        "math.calculus"
+      ],
+      "prereq": [
+        "math.calculus.limit"
+      ],
+      "related": [
+        "math.calculus.derivative",
+        "math.calculus.mvt"
+      ],
+      "mastery": 3,
+      "evidence": [
+        "第一章小测 Q4"
+      ],
+      "misconceptions": [],
+      "sources": [],
+      "next_review": "2026-10-30"
+    },
+    {
+      "id": "math.calculus.derivative",
+      "name": "导数",
+      "aliases": [],
+      "branches": [
+        "math.calculus"
+      ],
+      "prereq": [
+        "math.calculus.limit",
+        "math.calculus.continuity"
+      ],
+      "related": [
+        "math.calculus.differential",
+        "math.calculus.mvt",
+        "math.calculus.indefinite-integral"
+      ],
+      "mastery": 3,
+      "evidence": [
+        "第一章作业 5",
+        "2026-10-21 练习"
+      ],
+      "misconceptions": [],
+      "sources": [],
+      "next_review": "2026-11-02"
+    },
+    {
+      "id": "math.calculus.differential",
+      "name": "微分与线性近似",
+      "aliases": [],
+      "branches": [
+        "math.calculus"
+      ],
+      "prereq": [
+        "math.calculus.derivative"
+      ],
+      "related": [
+        "math.calculus.multivariable"
+      ],
+      "mastery": 3,
+      "evidence": [
+        "第二章作业 2"
+      ],
+      "misconceptions": [],
+      "sources": [],
+      "next_review": "2026-11-05"
+    },
+    {
+      "id": "math.calculus.mvt",
+      "name": "中值定理",
+      "aliases": [],
+      "branches": [
+        "math.calculus"
+      ],
+      "prereq": [
+        "math.calculus.derivative"
+      ],
+      "related": [
+        "math.calculus.continuity",
+        "math.calculus.definite-integral"
+      ],
+      "mastery": 1,
+      "evidence": [
+        "第二章作业 4(1)"
+      ],
+      "misconceptions": [],
+      "sources": [],
+      "next_review": "2026-10-31"
+    },
+    {
+      "id": "math.calculus.indefinite-integral",
+      "name": "不定积分",
+      "aliases": [],
+      "branches": [
+        "math.calculus"
+      ],
+      "prereq": [
+        "math.calculus.derivative"
+      ],
+      "related": [
+        "math.calculus.definite-integral",
+        "math.calculus.ode"
+      ],
+      "mastery": 3,
+      "evidence": [
+        "第三章作业 1"
+      ],
+      "misconceptions": [],
+      "sources": [],
+      "next_review": "2026-11-04"
+    },
+    {
+      "id": "math.calculus.definite-integral",
+      "name": "定积分",
+      "aliases": [],
+      "branches": [
+        "math.calculus"
+      ],
+      "prereq": [
+        "math.calculus.indefinite-integral",
+        "math.calculus.limit"
+      ],
+      "related": [
+        "math.calculus.ode",
+        "math.calculus.series"
+      ],
+      "mastery": 3,
+      "evidence": [
+        "第三章作业 3",
+        "2026-10-23 复习"
+      ],
+      "misconceptions": [],
+      "sources": [],
+      "next_review": "2026-10-29"
+    },
+    {
+      "id": "math.calculus.ode",
+      "name": "一阶微分方程",
+      "aliases": [],
+      "branches": [
+        "math.calculus"
+      ],
+      "prereq": [
+        "math.calculus.indefinite-integral",
+        "math.calculus.definite-integral"
+      ],
+      "related": [
+        "math.calculus.derivative"
+      ],
+      "mastery": 2,
+      "evidence": [
+        "第四章作业 1"
+      ],
+      "misconceptions": [],
+      "sources": [],
+      "next_review": "2026-11-03"
+    },
+    {
+      "id": "math.calculus.multivariable",
+      "name": "多元函数与偏导",
+      "aliases": [],
+      "branches": [
+        "math.calculus"
+      ],
+      "prereq": [
+        "math.calculus.derivative",
+        "math.calculus.definite-integral"
+      ],
+      "related": [
+        "math.calculus.differential"
+      ],
+      "mastery": 0,
+      "evidence": [],
+      "misconceptions": [],
+      "sources": [],
+      "next_review": "2026-11-10"
+    },
+    {
+      "id": "math.calculus.series",
+      "name": "级数",
+      "aliases": [],
+      "branches": [
+        "math.calculus"
+      ],
+      "prereq": [
+        "math.calculus.limit",
+        "math.calculus.continuity"
+      ],
+      "related": [
+        "math.calculus.definite-integral"
+      ],
+      "mastery": 0,
+      "evidence": [],
+      "misconceptions": [],
+      "sources": [],
+      "next_review": "2026-11-12"
+    },
+    {
+      "id": "math.linear-algebra.vectors",
+      "name": "向量与线性组合",
+      "aliases": [],
+      "branches": [
+        "math.linear-algebra"
+      ],
+      "prereq": [],
+      "related": [
+        "math.linear-algebra.matrix-ops",
+        "math.linear-algebra.vector-space",
+        "math.linear-algebra.orthogonality"
+      ],
+      "mastery": 3,
+      "evidence": [
+        "linear-algebra/homework-1 2"
+      ],
+      "misconceptions": [],
+      "sources": [],
+      "next_review": "2026-11-06"
+    },
+    {
+      "id": "math.linear-algebra.matrix-ops",
+      "name": "矩阵运算",
+      "aliases": [],
+      "branches": [
+        "math.linear-algebra"
+      ],
+      "prereq": [
+        "math.linear-algebra.vectors"
+      ],
+      "related": [
+        "math.linear-algebra.determinant",
+        "math.linear-algebra.linear-systems",
+        "cs.c.arrays"
+      ],
+      "mastery": 3,
+      "evidence": [
+        "第一章作业 4",
+        "2026-10-18 练习"
+      ],
+      "misconceptions": [],
+      "sources": [],
+      "next_review": "2026-11-01"
+    },
+    {
+      "id": "math.linear-algebra.determinant",
+      "name": "行列式",
+      "aliases": [],
+      "branches": [
+        "math.linear-algebra"
+      ],
+      "prereq": [
+        "math.linear-algebra.matrix-ops"
+      ],
+      "related": [
+        "math.linear-algebra.inverse",
+        "math.linear-algebra.eigen"
+      ],
+      "mastery": 2,
+      "evidence": [
+        "第二章作业 2"
+      ],
+      "misconceptions": [],
+      "sources": [],
+      "next_review": "2026-10-31"
+    },
+    {
+      "id": "math.linear-algebra.inverse",
+      "name": "逆矩阵",
+      "aliases": [],
+      "branches": [
+        "math.linear-algebra"
+      ],
+      "prereq": [
+        "math.linear-algebra.determinant",
+        "math.linear-algebra.matrix-ops"
+      ],
+      "related": [
+        "math.linear-algebra.linear-systems"
+      ],
+      "mastery": 3,
+      "evidence": [
+        "第二章作业 5(1)"
+      ],
+      "misconceptions": [],
+      "sources": [],
+      "next_review": "2026-11-02"
+    },
+    {
+      "id": "math.linear-algebra.linear-systems",
+      "name": "线性方程组",
+      "aliases": [],
+      "branches": [
+        "math.linear-algebra"
+      ],
+      "prereq": [
+        "math.linear-algebra.matrix-ops"
+      ],
+      "related": [
+        "math.linear-algebra.inverse",
+        "math.linear-algebra.rank",
+        "math.linear-algebra.vector-space"
+      ],
+      "mastery": 2,
+      "evidence": [
+        "第二章小测 Q3",
+        "2026-10-24 重做"
+      ],
+      "misconceptions": [],
+      "sources": [],
+      "next_review": "2026-10-25"
+    },
+    {
+      "id": "math.linear-algebra.rank",
+      "name": "秩",
+      "aliases": [],
+      "branches": [
+        "math.linear-algebra"
+      ],
+      "prereq": [
+        "math.linear-algebra.matrix-ops"
+      ],
+      "related": [
+        "math.linear-algebra.linear-systems",
+        "math.linear-algebra.vector-space",
+        "math.linear-algebra.determinant"
+      ],
+      "mastery": 2,
+      "evidence": [
+        "第三章作业 1"
+      ],
+      "misconceptions": [],
+      "sources": [],
+      "next_review": "2026-11-07"
+    },
+    {
+      "id": "math.linear-algebra.vector-space",
+      "name": "向量空间",
+      "aliases": [],
+      "branches": [
+        "math.linear-algebra"
+      ],
+      "prereq": [
+        "math.linear-algebra.vectors",
+        "math.linear-algebra.linear-systems"
+      ],
+      "related": [
+        "math.linear-algebra.rank",
+        "math.linear-algebra.eigen"
+      ],
+      "mastery": 1,
+      "evidence": [
+        "第三章作业 4"
+      ],
+      "misconceptions": [],
+      "sources": [],
+      "next_review": "2026-11-08"
+    },
+    {
+      "id": "math.linear-algebra.eigen",
+      "name": "特征值与特征向量",
+      "aliases": [],
+      "branches": [
+        "math.linear-algebra"
+      ],
+      "prereq": [
+        "math.linear-algebra.determinant",
+        "math.linear-algebra.linear-systems"
+      ],
+      "related": [
+        "math.linear-algebra.quadratic-form",
+        "math.linear-algebra.orthogonality"
+      ],
+      "mastery": 2,
+      "evidence": [
+        "第四章作业 2"
+      ],
+      "misconceptions": [],
+      "sources": [],
+      "next_review": "2026-10-27"
+    },
+    {
+      "id": "math.linear-algebra.orthogonality",
+      "name": "正交与投影",
+      "aliases": [],
+      "branches": [
+        "math.linear-algebra"
+      ],
+      "prereq": [
+        "math.linear-algebra.vectors"
+      ],
+      "related": [
+        "math.linear-algebra.vector-space",
+        "math.linear-algebra.quadratic-form"
+      ],
+      "mastery": 2,
+      "evidence": [
+        "第五章作业 1"
+      ],
+      "misconceptions": [],
+      "sources": [],
+      "next_review": "2026-11-04"
+    },
+    {
+      "id": "math.linear-algebra.quadratic-form",
+      "name": "二次型",
+      "aliases": [],
+      "branches": [
+        "math.linear-algebra"
+      ],
+      "prereq": [
+        "math.linear-algebra.eigen",
+        "math.linear-algebra.orthogonality"
+      ],
+      "related": [
+        "math.linear-algebra.eigen"
+      ],
+      "mastery": 0,
+      "evidence": [],
+      "misconceptions": [],
+      "sources": [],
+      "next_review": "2026-11-12"
+    },
+    {
+      "id": "cs.c.types",
+      "name": "基本数据类型",
+      "aliases": [],
+      "branches": [
+        "cs.c"
+      ],
+      "prereq": [],
+      "related": [
+        "cs.c.variables",
+        "cs.c.operators"
+      ],
+      "mastery": 3,
+      "evidence": [
+        "c-program/homework-1"
+      ],
+      "misconceptions": [],
+      "sources": [],
+      "next_review": "2026-11-05"
+    },
+    {
+      "id": "cs.c.variables",
+      "name": "变量与作用域",
+      "aliases": [],
+      "branches": [
+        "cs.c"
+      ],
+      "prereq": [
+        "cs.c.types"
+      ],
+      "related": [
+        "cs.c.functions",
+        "cs.c.pointer"
+      ],
+      "mastery": 3,
+      "evidence": [
+        "c-program/homework-2"
+      ],
+      "misconceptions": [],
+      "sources": [],
+      "next_review": "2026-11-02"
+    },
+    {
+      "id": "cs.c.operators",
+      "name": "运算符与表达式",
+      "aliases": [],
+      "branches": [
+        "cs.c"
+      ],
+      "prereq": [
+        "cs.c.variables"
+      ],
+      "related": [
+        "cs.c.control-flow"
+      ],
+      "mastery": 3,
+      "evidence": [
+        "c-program/homework-2 Q5"
+      ],
+      "misconceptions": [],
+      "sources": [],
+      "next_review": "2026-11-03"
+    },
+    {
+      "id": "cs.c.control-flow",
+      "name": "控制流",
+      "aliases": [],
+      "branches": [
+        "cs.c"
+      ],
+      "prereq": [
+        "cs.c.operators"
+      ],
+      "related": [
+        "cs.c.functions",
+        "cs.c.arrays"
+      ],
+      "mastery": 3,
+      "evidence": [
+        "c-program/homework-3"
+      ],
+      "misconceptions": [],
+      "sources": [],
+      "next_review": "2026-11-06"
+    },
+    {
+      "id": "cs.c.functions",
+      "name": "函数",
+      "aliases": [],
+      "branches": [
+        "cs.c"
+      ],
+      "prereq": [
+        "cs.c.control-flow",
+        "cs.c.variables"
+      ],
+      "related": [
+        "cs.c.arrays",
+        "cs.c.pointer"
+      ],
+      "mastery": 2,
+      "evidence": [
+        "c-program/homework-3 Q4"
+      ],
+      "misconceptions": [],
+      "sources": [],
+      "next_review": "2026-10-31"
+    },
+    {
+      "id": "cs.c.arrays",
+      "name": "数组",
+      "aliases": [],
+      "branches": [
+        "cs.c"
+      ],
+      "prereq": [
+        "cs.c.functions",
+        "cs.c.control-flow"
+      ],
+      "related": [
+        "cs.c.pointer",
+        "cs.c.strings",
+        "math.linear-algebra.matrix-ops"
+      ],
+      "mastery": 3,
+      "evidence": [
+        "c-program/homework-4 Q2",
+        "2026-10-22 阶段测验记录（seed 占位）"
+      ],
+      "misconceptions": [],
+      "sources": [],
+      "next_review": "2026-11-01"
+    },
+    {
+      "id": "cs.c.pointer",
+      "name": "指针",
+      "aliases": [],
+      "branches": [
+        "cs.c"
+      ],
+      "prereq": [
+        "cs.c.arrays",
+        "cs.c.variables"
+      ],
+      "related": [
+        "cs.c.strings",
+        "cs.c.malloc",
+        "cs.c.structs"
+      ],
+      "mastery": 2,
+      "evidence": [
+        "c-program/homework-4 Q3",
+        "2026-10-25 练习"
+      ],
+      "misconceptions": [],
+      "sources": [],
+      "next_review": "2026-10-26"
+    },
+    {
+      "id": "cs.c.strings",
+      "name": "字符串",
+      "aliases": [],
+      "branches": [
+        "cs.c"
+      ],
+      "prereq": [
+        "cs.c.arrays",
+        "cs.c.pointer"
+      ],
+      "related": [
+        "cs.c.functions",
+        "cs.c.structs"
+      ],
+      "mastery": 2,
+      "evidence": [
+        "c-program/homework-5 Q1"
+      ],
+      "misconceptions": [],
+      "sources": [],
+      "next_review": "2026-10-30"
+    },
+    {
+      "id": "cs.c.structs",
+      "name": "结构体",
+      "aliases": [],
+      "branches": [
+        "cs.c"
+      ],
+      "prereq": [
+        "cs.c.variables",
+        "cs.c.arrays"
+      ],
+      "related": [
+        "cs.c.pointer",
+        "cs.c.file-io"
+      ],
+      "mastery": 1,
+      "evidence": [
+        "c-program/homework-5 Q3"
+      ],
+      "misconceptions": [],
+      "sources": [],
+      "next_review": "2026-10-28"
+    },
+    {
+      "id": "cs.c.malloc",
+      "name": "动态内存",
+      "aliases": [],
+      "branches": [
+        "cs.c"
+      ],
+      "prereq": [
+        "cs.c.pointer"
+      ],
+      "related": [
+        "cs.c.structs",
+        "cs.c.file-io"
+      ],
+      "mastery": 1,
+      "evidence": [
+        "c-program/homework-6 Q2"
+      ],
+      "misconceptions": [],
+      "sources": [],
+      "next_review": "2026-11-02"
+    },
+    {
+      "id": "cs.c.file-io",
+      "name": "文件读写",
+      "aliases": [],
+      "branches": [
+        "cs.c"
+      ],
+      "prereq": [
+        "cs.c.functions",
+        "cs.c.pointer"
+      ],
+      "related": [
+        "cs.c.structs",
+        "cs.c.malloc"
+      ],
+      "mastery": 1,
+      "evidence": [
+        "c-program/homework-6 Q3"
+      ],
+      "misconceptions": [],
+      "sources": [],
+      "next_review": "2026-11-07"
+    }
+  ],
+  "weak_concepts": [
+    {
+      "concept": "math.calculus.limit",
+      "mastery": 2,
+      "reasons": [
+        "掌握度 2/5",
+        "同一误区出现 2 次"
+      ]
+    },
+    {
+      "concept": "math.calculus.mvt",
+      "mastery": 1,
+      "reasons": [
+        "掌握度 1/5",
+        "缺少独立完成的证据"
+      ]
+    },
+    {
+      "concept": "math.linear-algebra.linear-systems",
+      "mastery": 2,
+      "reasons": [
+        "掌握度 2/5",
+        "解的情况讨论不完整"
+      ]
+    },
+    {
+      "concept": "math.linear-algebra.rank",
+      "mastery": 2,
+      "reasons": [
+        "掌握度 2/5",
+        "行秩 / 列秩混淆"
+      ]
+    },
+    {
+      "concept": "cs.c.pointer",
+      "mastery": 2,
+      "reasons": [
+        "掌握度 2/5",
+        "数组名与指针混淆"
+      ]
+    }
+  ],
+  "due_reviews": [
+    {
+      "concept": "math.calculus.limit",
+      "due": "2026-10-24",
+      "mastery": 2
+    },
+    {
+      "concept": "math.linear-algebra.linear-systems",
+      "due": "2026-10-25",
+      "mastery": 2
+    },
+    {
+      "concept": "cs.c.pointer",
+      "due": "2026-10-26",
+      "mastery": 2
+    },
+    {
+      "concept": "math.linear-algebra.eigen",
+      "due": "2026-10-27",
+      "mastery": 2
+    },
+    {
+      "concept": "cs.c.structs",
+      "due": "2026-10-28",
+      "mastery": 1
+    },
+    {
+      "concept": "math.calculus.definite-integral",
+      "due": "2026-10-29",
+      "mastery": 3
+    },
+    {
+      "concept": "math.calculus.mvt",
+      "due": "2026-10-31",
+      "mastery": 1
+    },
+    {
+      "concept": "math.linear-algebra.determinant",
+      "due": "2026-10-31",
+      "mastery": 2
+    }
+  ],
+  "recent_activity": [
+    {
+      "ts": "2026-10-25T22:40:00+08:00",
+      "branch": "cs.c",
+      "unit": "指针",
+      "action": "practice",
+      "mastery": 2,
+      "evidence": "c-program/homework-4 Q3"
+    },
+    {
+      "ts": "2026-10-25T21:10:00+08:00",
+      "branch": "math.calculus",
+      "unit": "极限",
+      "action": "review",
+      "mastery": 2,
+      "evidence": "错题订正 2 题（seed 占位）"
+    },
+    {
+      "ts": "2026-10-24T16:30:00+08:00",
+      "branch": "math.linear-algebra",
+      "unit": "线性方程组",
+      "action": "practice",
+      "mastery": 2,
+      "evidence": "第二章小测 Q3 重做"
+    },
+    {
+      "ts": "2026-10-24T10:05:00+08:00",
+      "branch": "cs.c",
+      "unit": "指针",
+      "action": "misconception",
+      "mastery": 2,
+      "evidence": "作业4 Q3 数组名与指针混用"
+    },
+    {
+      "ts": "2026-10-23T19:20:00+08:00",
+      "branch": "math.calculus",
+      "unit": "定积分",
+      "action": "review",
+      "mastery": 3,
+      "evidence": "第三章作业 3 复习"
+    },
+    {
+      "ts": "2026-10-22T20:00:00+08:00",
+      "branch": "cs.c",
+      "unit": "数组",
+      "action": "exam",
+      "mastery": 3,
+      "evidence": "阶段测验答题记录（seed 占位，无真实分数）"
+    },
+    {
+      "ts": "2026-10-21T18:40:00+08:00",
+      "branch": "math.calculus",
+      "unit": "导数",
+      "action": "practice",
+      "mastery": 3,
+      "evidence": "第一章作业 5 订正"
+    },
+    {
+      "ts": "2026-10-20T20:10:00+08:00",
+      "branch": "math.linear-algebra",
+      "unit": "特征值与特征向量",
+      "action": "study",
+      "mastery": 2,
+      "evidence": "第四章作业 2"
+    }
+  ]
+}

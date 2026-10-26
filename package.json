@@ -1,0 +1,64 @@
+{
+  "name": "dsh-learning-hub",
+  "version": "0.1.0",
+  "description": "A local-first DSH plugin that exposes a learning_hub tool and a read-only learning dashboard backed by plain _learner files.",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "public",
+    "examples/demo-learner",
+    "docs",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZBC-QRLA/dsh-learning-hub.git"
+  },
+  "homepage": "https://github.com/ZBC-QRLA/dsh-learning-hub#readme",
+  "bugs": {
+    "url": "https://github.com/ZBC-QRLA/dsh-learning-hub/issues"
+  },
+  "author": "Learning Hub contributors",
+  "engines": {
+    "node": ">=20",
+    "dsh": ">=0.2.1-rc.3 <0.3.0-0"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "manifestVersion": 1,
+    "compatibility": {
+      "dsh": ">=0.2.1-rc.3 <0.3.0-0",
+      "node": ">=20"
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.5",
+    "@deepseek-ai/dsh-tools": ">=0.2.1-rc.3 <0.3.0-0"
+  },
+  "peerDependenciesMeta": {
+    "@deepseek-ai/cordis": {
+      "optional": true
+    }
+  },
+  "scripts": {
+    "test": "node --test",
+    "test:panel": "node test/panel-selfcheck.mjs"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "learning",
+    "learning-hub",
+    "spaced-repetition"
+  ],
+  "license": "MIT"
+}

@@ -1,0 +1,2 @@
+{"ts":"2026-10-24T20:01:00+08:00","cwd":"/path/to/learner/courses/c/homework-3","primary":"cs.c","secondary":[],"confidence":0.87,"reason":"cwd is inside the C Programming workspace","seed":true}
+{"ts":"2026-10-25T21:02:00+08:00","cwd":"/path/to/learner/courses/calculus/chapter-1","primary":"math.calculus","secondary":["math.linear-algebra"],"confidence":0.64,"reason":"cwd and text matched Calculus; one confirmation question is enough","seed":true}

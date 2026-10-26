@@ -1,0 +1,215 @@
+{
+  "version": 1,
+  "seed": true,
+  "notice": "Demo seed data. Mastery values are illustrative, not grades.",
+  "concepts": [
+    {
+      "id": "math.calculus.function",
+      "name": "函数与初等函数",
+      "aliases": [
+        "function",
+        "elementary function"
+      ],
+      "branches": [
+        "math.calculus"
+      ],
+      "prereq": [],
+      "related": [
+        "math.calculus.limit"
+      ],
+      "mastery": 4,
+      "evidence": [
+        "seed: calculus/homework-1"
+      ],
+      "misconceptions": [],
+      "sources": [],
+      "next_review": "2026-11-09"
+    },
+    {
+      "id": "math.calculus.limit",
+      "name": "极限",
+      "aliases": [
+        "limit"
+      ],
+      "branches": [
+        "math.calculus"
+      ],
+      "prereq": [
+        "math.calculus.function"
+      ],
+      "related": [
+        "math.calculus.derivative"
+      ],
+      "mastery": 2,
+      "evidence": [
+        "seed: calculus/homework-3 Q2"
+      ],
+      "misconceptions": [
+        "把无限接近当成等于"
+      ],
+      "sources": [],
+      "next_review": "2026-10-24"
+    },
+    {
+      "id": "math.calculus.derivative",
+      "name": "导数",
+      "aliases": [
+        "derivative"
+      ],
+      "branches": [
+        "math.calculus"
+      ],
+      "prereq": [
+        "math.calculus.limit"
+      ],
+      "related": [
+        "math.calculus.function"
+      ],
+      "mastery": 1,
+      "evidence": [],
+      "misconceptions": [],
+      "sources": [],
+      "next_review": "2026-10-30"
+    },
+    {
+      "id": "math.linear-algebra.vectors",
+      "name": "向量与线性组合",
+      "aliases": [
+        "vector",
+        "linear combination"
+      ],
+      "branches": [
+        "math.linear-algebra"
+      ],
+      "prereq": [],
+      "related": [
+        "math.linear-algebra.matrix"
+      ],
+      "mastery": 3,
+      "evidence": [
+        "seed: linear-algebra/homework-1"
+      ],
+      "misconceptions": [],
+      "sources": [],
+      "next_review": "2026-11-06"
+    },
+    {
+      "id": "math.linear-algebra.matrix",
+      "name": "矩阵运算",
+      "aliases": [
+        "matrix",
+        "matrix multiplication"
+      ],
+      "branches": [
+        "math.linear-algebra"
+      ],
+      "prereq": [
+        "math.linear-algebra.vectors"
+      ],
+      "related": [
+        "math.linear-algebra.determinant",
+        "cs.c.array"
+      ],
+      "mastery": 3,
+      "evidence": [
+        "seed: linear-algebra/homework-2"
+      ],
+      "misconceptions": [],
+      "sources": [],
+      "next_review": "2026-11-01"
+    },
+    {
+      "id": "math.linear-algebra.determinant",
+      "name": "行列式",
+      "aliases": [
+        "determinant"
+      ],
+      "branches": [
+        "math.linear-algebra"
+      ],
+      "prereq": [
+        "math.linear-algebra.matrix"
+      ],
+      "related": [],
+      "mastery": 2,
+      "evidence": [
+        "seed: linear-algebra/homework-3"
+      ],
+      "misconceptions": [],
+      "sources": [],
+      "next_review": "2026-10-31"
+    },
+    {
+      "id": "cs.c.variables",
+      "name": "变量与作用域",
+      "aliases": [
+        "variable",
+        "scope"
+      ],
+      "branches": [
+        "cs.c"
+      ],
+      "prereq": [],
+      "related": [
+        "cs.c.pointer"
+      ],
+      "mastery": 3,
+      "evidence": [
+        "seed: c-program/homework-1"
+      ],
+      "misconceptions": [],
+      "sources": [],
+      "next_review": "2026-11-05"
+    },
+    {
+      "id": "cs.c.pointer",
+      "name": "指针",
+      "aliases": [
+        "pointer"
+      ],
+      "branches": [
+        "cs.c"
+      ],
+      "prereq": [
+        "cs.c.variables",
+        "cs.c.array"
+      ],
+      "related": [
+        "cs.c.array"
+      ],
+      "mastery": 2,
+      "evidence": [
+        "seed: c-program/homework-4 Q3"
+      ],
+      "misconceptions": [
+        "数组名和指针混淆",
+        "认为指针和 int 的大小一定相同"
+      ],
+      "sources": [],
+      "next_review": "2026-10-26"
+    },
+    {
+      "id": "cs.c.array",
+      "name": "数组",
+      "aliases": [
+        "array"
+      ],
+      "branches": [
+        "cs.c"
+      ],
+      "prereq": [
+        "cs.c.variables"
+      ],
+      "related": [
+        "cs.c.pointer"
+      ],
+      "mastery": 1,
+      "evidence": [
+        "seed: c-program/homework-3"
+      ],
+      "misconceptions": [],
+      "sources": [],
+      "next_review": "2026-11-02"
+    }
+  ]
+}

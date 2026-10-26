@@ -1,0 +1,24 @@
+# dsh-learning-hub bundle patch
+#
+# This file is referenced by `dsh.bundle.patch` in package.json. When the package
+# is installed into a DSH profile, the host appends dsh-learning-hub to the
+# profile bundle stack and merges the row below at startup.
+#
+# Install from a checkout (no publish required):
+#
+#   dsh plugin --profile <profile> add /path/to/dsh-learning-hub
+#
+# Configuration is optional. The plugin resolves its built-in default data root
+# and panel directory relative to this package (examples/demo-learner and
+# public). To point at real learner data, override by id in the profile's own
+# cordis.patch.yml:
+#
+#   - id: learning-hub
+#     name: dsh-learning-hub
+#     config:
+#       dataRoot: '/path/to/learner'
+#       panelDir: '/path/to/dsh-learning-hub/public'
+#       # port: 19480   # optional: loopback-only extra HTTP port, disabled by default
+- insert:
+    - id: learning-hub
+      name: dsh-learning-hub

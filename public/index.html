@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="学习中枢：高等数学、线性代数与 C 语言的本地学习面板">
+<title>学习中枢 · Learning Hub</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23345bd6'/%3E%3Cpath d='M8 10.5c3-1.4 5.5-1.1 8 .8v11c-2.5-1.9-5-2.2-8-.8v-11Zm16 0c-3-1.4-5.5-1.1-8 .8v11c2.5-1.9 5-2.2 8-.8v-11Z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<a class="skip-link" href="#center">跳到当前分支</a>
+<div class="app" id="app" aria-busy="true">
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32"><path d="M6 8.8c4-2 7.2-1.4 10 1v13.4c-2.8-2.4-6-3-10-1V8.8Z"/><path d="M26 8.8c-4-2-7.2-1.4-10 1v13.4c2.8-2.4 6-3 10-1V8.8Z"/></svg>
+      </span>
+      <span class="brand-copy">
+        <span class="brand-name">学习中枢</span>
+        <span class="brand-sub">LEARNING HUB</span>
+      </span>
+    </div>
+
+    <div class="search-wrap">
+      <svg class="search-icon" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.8" cy="8.8" r="5.3"></circle><path d="m13 13 4 4"></path></svg>
+      <input id="concept-search" type="search" role="combobox" aria-autocomplete="list" aria-controls="search-results" aria-expanded="false" placeholder="搜索概念、别名或 ID" autocomplete="off" spellcheck="false">
+      <kbd class="search-kbd">/</kbd>
+      <div id="search-results" class="search-results" role="listbox" aria-label="概念搜索结果" hidden></div>
+    </div>
+
+    <div class="topbar-meta">
+      <span id="source-badge" class="source-badge" data-tone="loading"><span class="source-dot"></span>载入中</span>
+      <button id="reload-btn" class="icon-btn" type="button" title="重新载入数据" aria-label="重新载入数据">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M16.2 8.2A6.5 6.5 0 1 0 16 13"></path><path d="M16.4 4.2v4.4h-4.4"></path></svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="layout-bar" role="group" aria-label="面板布局">
+    <button id="toggle-tree" class="layout-toggle" type="button" aria-controls="tree-col" aria-expanded="true" title="收起 / 展开左侧分叉树">
+      <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 5h12M4 10h12M4 15h12"></path><path d="M2.5 5h.01M2.5 10h.01M2.5 15h.01"></path></svg>
+      <span>收起分叉树</span>
+    </button>
+    <button id="toggle-map" class="layout-toggle" type="button" aria-controls="map-col" aria-expanded="true" title="收起 / 展开右侧概念图">
+      <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 5h12M4 10h8M4 15h12"></path><path d="M2.5 5h.01M2.5 10h.01M2.5 15h.01"></path></svg>
+      <span>收起概念图</span>
+    </button>
+    <span class="layout-hint">窄屏 / 缩放时可收起侧栏，中间内容会自动占满</span>
+  </div>
+
+  <div id="seed-banner" class="seed-banner" role="note" hidden></div>
+
+  <main class="layout">
+    <aside id="tree-col" class="col tree-col" aria-label="学习分叉树">
+      <section id="learner-card" class="panel learner-card" aria-label="学习者">
+        <div class="learner-head">
+          <span class="avatar">学</span>
+          <div class="learner-id">
+            <p class="learner-name">正在载入…</p>
+            <p class="learner-meta">学习档案</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel tree-panel">
+        <div class="panel-head">
+          <div>
+            <h2>分叉树</h2>
+            <p class="panel-sub">按课程折叠 · 点击切换当前分支</p>
+          </div>
+          <button id="collapse-tree" class="text-btn" type="button">全部收起</button>
+        </div>
+        <nav id="branch-tree" class="tree" aria-label="课程与概念">
+          <p class="muted-text">正在载入分支…</p>
+        </nav>
+      </section>
+
+      <p id="tree-foot" class="tree-foot"></p>
+    </aside>
+
+    <section class="col center-col" id="center" aria-label="当前分支">
+      <section id="branch-hero" class="panel branch-hero" aria-label="当前分支概览">
+        <p class="eyebrow">当前分支</p>
+        <h1>正在载入学习数据…</h1>
+      </section>
+
+      <section id="next-card" class="panel next-card" aria-label="下一步"></section>
+
+      <section id="kpis" class="kpis" aria-label="关键指标"></section>
+
+      <section id="mastery-card" class="panel mastery-card" aria-label="掌握度总览"></section>
+
+      <div class="split">
+        <section id="weak-card" class="panel weak-card" aria-label="薄弱概念"></section>
+        <section id="due-card" class="panel due-card" aria-label="到期复习"></section>
+      </div>
+
+      <section id="activity-card" class="panel activity-card" aria-label="最近活动"></section>
+
+      <section id="record-card" class="panel record-card" aria-label="记录一条进度">
+        <div class="panel-head">
+          <div>
+            <h2>记录一条进度</h2>
+            <p class="panel-sub">追加式记录 · 失败时保留表单 · POST /api/learning-hub/record</p>
+          </div>
+          <span class="mini-tag">只追加</span>
+        </div>
+        <form id="record-form" class="record-form" novalidate>
+          <div class="form-grid">
+            <label class="field">
+              <span class="field-label">分支</span>
+              <select id="record-branch"></select>
+            </label>
+            <label class="field">
+              <span class="field-label">概念 / 单元</span>
+              <select id="record-unit"></select>
+            </label>
+            <label class="field">
+              <span class="field-label">动作</span>
+              <select id="record-action">
+                <option value="study">学习 study</option>
+                <option value="practice">练习 practice</option>
+                <option value="exam">测验 exam</option>
+                <option value="review">复习 review</option>
+                <option value="misconception">误区 misconception</option>
+              </select>
+            </label>
+            <label class="field field-wide">
+              <span class="field-label">证据 <em>必填 · 可追溯</em></span>
+              <input id="record-evidence" type="text" maxlength="200" placeholder="例：calculus/homework-3 Q2 / c-program/homework-4 Q3" required>
+            </label>
+            <label class="field field-wide">
+              <span class="field-label">备注 <em>可选</em></span>
+              <input id="record-note" type="text" maxlength="200" placeholder="例：换元后忘记回代，重做 2 题">
+            </label>
+          </div>
+
+          <fieldset class="mastery-pick">
+            <legend>掌握度</legend>
+            <div class="mastery-options">
+              <label class="mastery-option m0"><input type="radio" name="record-mastery" value="0" checked><span><b>0</b>未接触</span></label>
+              <label class="mastery-option m1"><input type="radio" name="record-mastery" value="1"><span><b>1</b>见过</span></label>
+              <label class="mastery-option m2"><input type="radio" name="record-mastery" value="2"><span><b>2</b>能跟做</span></label>
+              <label class="mastery-option m3"><input type="radio" name="record-mastery" value="3"><span><b>3</b>能独立做</span></label>
+              <label class="mastery-option m4"><input type="radio" name="record-mastery" value="4"><span><b>4</b>熟练稳定</span></label>
+              <label class="mastery-option m5"><input type="radio" name="record-mastery" value="5"><span><b>5</b>能讲明白</span></label>
+            </div>
+          </fieldset>
+
+          <p id="record-hint" class="record-hint">证据必填，例如「calculus/homework-3 Q2」或本地路径。</p>
+          <div class="form-foot">
+            <p id="record-status" class="record-status" role="status" aria-live="polite" hidden></p>
+            <button id="record-submit" class="btn btn-primary" type="submit">提交进度</button>
+          </div>
+        </form>
+      </section>
+    </section>
+
+    <aside id="map-col" class="col map-col" aria-label="概念图与详情">
+      <section class="panel graph-card">
+        <div class="panel-head">
+          <div>
+            <h2>概念图</h2>
+            <p id="graph-meta" class="panel-sub">当前分支 · 点击节点查看详情</p>
+          </div>
+          <span class="mini-tag">SVG</span>
+        </div>
+        <div class="graph-legend" aria-label="图例">
+          <span class="legend-title">掌握度</span>
+          <span class="legend-swatch m0"></span><span>0</span>
+          <span class="legend-swatch m1"></span><span>1</span>
+          <span class="legend-swatch m2"></span><span>2</span>
+          <span class="legend-swatch m3"></span><span>3</span>
+          <span class="legend-swatch m4"></span><span>4</span>
+          <span class="legend-swatch m5"></span><span>5</span>
+          <span class="legend-divider" aria-hidden="true"></span>
+          <span class="legend-line"></span><span>先修</span>
+          <span class="legend-line is-dashed"></span><span>关联</span>
+        </div>
+        <div id="graph-wrap" class="graph-wrap">
+          <p class="muted-text">正在生成概念图…</p>
+        </div>
+        <p class="graph-hint">默认只画约简后的先修边；选中节点后显示它的关联边。节点数字是掌握度，点击查看详情。</p>
+      </section>
+
+      <section id="concept-detail" class="panel detail-card" tabindex="-1" aria-label="概念详情">
+        <div class="empty-state compact">
+          <p class="empty-title">选择一个概念</p>
+          <p class="empty-text">点击左侧概念或右侧节点，查看掌握度、先修、关联与证据。</p>
+        </div>
+      </section>
+    </aside>
+  </main>
+
+  <footer class="app-footer">
+    <p id="app-footnote">学习中枢 v0.1 · 静态面板 · 无 CDN / 无外部字体</p>
+    <p id="data-footnote" class="data-footnote"></p>
+  </footer>
+</div>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script src="./app.js" defer></script>
+</body>
+</html>

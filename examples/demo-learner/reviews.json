@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "seed": true,
+  "notice": "Demo seed data. Only scheduled entries affect the due list.",
+  "reviews": [
+    {
+      "concept": "math.calculus.limit",
+      "branch": "math.calculus",
+      "due": "2026-10-24",
+      "mastery": 2,
+      "interval_days": 3,
+      "last_reviewed": "2026-10-21",
+      "status": "scheduled"
+    },
+    {
+      "concept": "math.linear-algebra.determinant",
+      "branch": "math.linear-algebra",
+      "due": "2026-10-31",
+      "mastery": 2,
+      "interval_days": 7,
+      "last_reviewed": "2026-10-24",
+      "status": "scheduled"
+    },
+    {
+      "concept": "cs.c.variables",
+      "branch": "cs.c",
+      "due": "2026-10-20",
+      "mastery": 3,
+      "interval_days": 7,
+      "last_reviewed": "2026-10-13",
+      "status": "done"
+    }
+  ]
+}

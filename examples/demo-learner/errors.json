@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "seed": true,
+  "notice": "Demo seed data. Error entries are illustrative.",
+  "errors": [
+    {
+      "id": "E-DEMO-001",
+      "branch": "cs.c",
+      "concept": "cs.c.pointer",
+      "symptom": "数组名和指针混淆",
+      "root_cause": "没有区分数组名退化为首元素地址",
+      "fix": "用 sizeof 与 &arr 对比，并打印地址",
+      "seen": 2,
+      "last_at": "2026-10-24"
+    }
+  ]
+}

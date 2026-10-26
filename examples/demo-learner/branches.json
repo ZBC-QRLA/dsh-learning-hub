@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "seed": true,
+  "notice": "Demo seed data for dsh-learning-hub. Not a real learner record.",
+  "branches": [
+    {
+      "id": "math.calculus",
+      "name": "Calculus",
+      "parent": "math",
+      "workspace": "/path/to/learner/courses/calculus",
+      "paths": [
+        "courses/calculus"
+      ],
+      "keywords": [
+        "limit",
+        "derivative",
+        "integral",
+        "极限",
+        "导数",
+        "积分"
+      ],
+      "materials": [
+        "M-001"
+      ],
+      "status": "active",
+      "next": "Limits: the epsilon-delta definition"
+    },
+    {
+      "id": "math.linear-algebra",
+      "name": "Linear Algebra",
+      "parent": "math",
+      "workspace": "/path/to/learner/courses/linear-algebra",
+      "paths": [
+        "courses/linear-algebra"
+      ],
+      "keywords": [
+        "matrix",
+        "determinant",
+        "eigenvalue",
+        "矩阵",
+        "行列式",
+        "特征值"
+      ],
+      "materials": [
+        "M-002"
+      ],
+      "status": "active",
+      "next": "Matrices: inverse and elementary row operations"
+    },
+    {
+      "id": "cs.c",
+      "name": "C Programming",
+      "parent": "cs",
+      "workspace": "/path/to/learner/courses/c",
+      "paths": [
+        "courses/c"
+      ],
+      "keywords": [
+        "pointer",
+        "array",
+        "struct",
+        "指针",
+        "数组",
+        "结构体"
+      ],
+      "materials": [
+        "M-003"
+      ],
+      "status": "active",
+      "next": "Pointers: pointer arithmetic and bounds checks"
+    }
+  ]
+}
