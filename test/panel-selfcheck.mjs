@@ -1,5 +1,5 @@
-// 学习中枢面板自检（零依赖，Node >= 20）
-// 运行：node --check public/app.js && node test/panel-selfcheck.mjs
+// Panel self-check (zero dependency, Node >= 20)
+// Run: node --check public/app.js && node test/panel-selfcheck.mjs
 import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
@@ -121,6 +121,54 @@ ok(detail.includes('先修') && detail.includes('关联'), '详情缺少先修/�
 ok(!detail.includes('undefined'), '详情含 undefined');
 ok(api.dueStatus('2026-10-24', state.referenceDate).key === 'overdue', 'dueStatus 逾期判断失败');
 ok(api.dueStatus('2026-10-26', state.referenceDate).key === 'today', 'dueStatus 今天判断失败');
+
+// 2b. 统计块下钻（KPI / 分布行 / hero）
+ok(typeof api.buildDrillModel === 'function' && typeof api.renderDrillBodyHTML === 'function', '缺少下钻模型 API');
+ok(typeof api.WEAK_LABEL === 'string' && api.WEAK_LABEL.length > 0, 'WEAK_LABEL 未导出');
+ok(api.buildDrillModel(state, api.computeStats(state, state.currentBranch), 'nope') === null, '未知下钻目标应返回 null');
+
+for (const branch of state.branches) {
+  const stats = api.computeStats(state, branch.id);
+  ok(stats.weakCount === stats.weak.length, '分支 ' + branch.id + ' weakCount 应等于 weak 列表条数');
+  for (let level = 0; level <= 5; level += 1) {
+    const model = api.buildDrillModel(state, stats, 'bucket', level);
+    ok(model && model.total === stats.distribution[level], '分支 ' + branch.id + ' m' + level + ' 下钻条数与分布不一致');
+    const html = api.renderDrillBodyHTML(model);
+    ok((html.match(/data-action="drill-detail"/g) || []).length === model.total, '分支 ' + branch.id + ' m' + level + ' 下钻行数不一致');
+    ok(!html.includes('undefined') && !html.includes('NaN'), '分支 ' + branch.id + ' m' + level + ' 弹窗含 undefined/NaN');
+    if (stats.distribution[level] === 0) {
+      ok(model.isEmpty && html.includes('drill-empty'), '分支 ' + branch.id + ' m' + level + ' 空分布应只渲染空状态');
+    }
+  }
+  ok(api.buildDrillModel(state, stats, 'touched').total === stats.touched, '分支 ' + branch.id + ' 已接触下钻条数不一致');
+  ok(api.buildDrillModel(state, stats, 'avg').total === stats.listCount, '分支 ' + branch.id + ' 掌握均值下钻条数不一致');
+  ok(api.buildDrillModel(state, stats, 'weak').total === stats.weakCount, '分支 ' + branch.id + ' 未掌握下钻条数不一致');
+  ok(api.buildDrillModel(state, stats, 'due').total === stats.due.length, '分支 ' + branch.id + ' 待复习下钻条数不一致');
+  ok(api.buildDrillModel(state, stats, 'bucket', 9).level === 5, '分支 ' + branch.id + ' 越界 mastery 应夹紧到 5');
+}
+
+const weakModel = api.buildDrillModel(state, api.computeStats(state, state.currentBranch), 'weak');
+ok(weakModel.groups.length >= 1 && weakModel.desc.includes('未接触') === (api.weakSplit(api.computeStats(state, state.currentBranch)).untouched > 0),
+  '未掌握弹窗口径文案与分组不一致');
+
+const drillEvil = JSON.parse(JSON.stringify(sample));
+drillEvil.concepts[0].name = '<img src=x onerror="alert(1)">';
+const drillEvilState = api.normalizeState(drillEvil, { source: 'sample' });
+const drillEvilHTML = api.renderDrillBodyHTML(
+  api.buildDrillModel(drillEvilState, api.computeStats(drillEvilState, drillEvilState.currentBranch), 'avg'));
+ok(!drillEvilHTML.includes('<img'), '下钻弹窗未转义概念名');
+
+// 2c. 照片 → DSH 链路的静态约束
+ok(index.includes('id="drill-dialog"') && index.includes('aria-labelledby="drill-title"'), 'index 缺少下钻弹窗');
+ok(index.includes('id="record-photo-session"') && index.includes('id="record-photo-login"'), 'index 缺少 DSH 会话选择/登录入口');
+ok(js.includes('data-action="drill-open"') && js.includes('data-action="drill-detail"'), 'app.js 缺少下钻事件');
+ok(js.includes('session/list') && js.includes('session/prompt'), 'app.js 缺少 DSH 会话 RPC');
+ok(js.includes('RPC_SESSION_LIST, { _request: {} }'), 'session/list 必须用 _request 包装');
+ok(js.includes('RPC_SESSION_PROMPT, { request: args }'), 'session/prompt 必须用 request 包装');
+ok(js.includes('/learning-hub/auth'), 'app.js 缺少 DSH 登录跳转');
+ok(js.includes("'/api/' + method"), 'app.js RPC 未走 /api/<method>');
+ok(css.includes('.drill-dialog::backdrop') && css.includes('.photo-session-select'), 'CSS 缺少弹窗/会话选择样式');
+ok(/\.drill-body\s*\{[^}]*overflow-y:\s*auto/.test(css), '弹窗列表应可滚动');
 
 // 3. 静态文件边界与依赖
 ok(index.includes('./styles.css') && index.includes('./app.js'), 'index 未引用本地样式/脚本');

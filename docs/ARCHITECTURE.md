@@ -24,6 +24,7 @@ Skills (separate, installed in DSH)
 3. `lib/index.js` registers:
    - one `learning_hub` tool;
    - exact `GET /learning-hub` → 302;
+   - exact `GET /learning-hub/auth` → DSH browser-auth redirect + 30-day cookie;
    - prefix `/learning-hub` for the panel/assets;
    - exact API routes under `/api/learning-hub/`.
 4. `ctx.effect` disposes routes and the optional server on unload.

@@ -6,6 +6,8 @@
 - Node.js `>=20` for tests and local tools
 - A directory for learner data (`_learner`) containing at least `profile.md`, `branches.json`, `concepts.json`
 
+Replace `<DSH_HOME>` below with your DSH install directory.
+
 ## From a checkout
 
 ```powershell
@@ -13,7 +15,7 @@
 dsh plugin --profile desktop add D:\path\to\dsh-learning-hub
 
 # 2. Configure the profile
-# D:\dsh\profiles\desktop\cordis.patch.yml
+# <DSH_HOME>\profiles\desktop\cordis.patch.yml
 ```
 
 ```yaml
@@ -44,8 +46,8 @@ Set a fixed web port in the test profile (`cordis.patch.yml`) and point `dataRoo
 
 ```powershell
 # backup profile first
-Copy-Item D:\dsh\profiles\desktop\package.json D:\dsh\profiles\desktop\package.json.bak-YYYYMMDD
-Copy-Item D:\dsh\profiles\desktop\cordis.patch.yml D:\dsh\profiles\desktop\cordis.patch.yml.bak-YYYYMMDD
+Copy-Item <DSH_HOME>\profiles\desktop\package.json <DSH_HOME>\profiles\desktop\package.json.bak-YYYYMMDD
+Copy-Item <DSH_HOME>\profiles\desktop\cordis.patch.yml <DSH_HOME>\profiles\desktop\cordis.patch.yml.bak-YYYYMMDD
 
 dsh plugin --profile desktop add D:\path\to\dsh-learning-hub
 ```

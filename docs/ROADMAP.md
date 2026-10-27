@@ -1,13 +1,21 @@
 # Roadmap
 
-## 0.1.0 — current
+## 0.1.1 — current
+
+- [x] panel drilldown: KPI / mastery buckets / stacked bar / hero stats → concept dialog
+- [x] photo attachment → selected DSH session (same-origin RPC)
+- [x] `GET /learning-hub/auth` → DSH cookie, no manual token
+- [x] mixed seed/real mode: `record` requires real evidence, writes session + `seed:false`, syncs reviews
+- [x] 34 plugin tests; 523 panel selfcheck checks
+- [x] demo data and sanitized open-source repo
+
+## 0.1.0 — 2026-10-26
 
 - [x] `learning_hub` tool: `status`, `route`, `record`, `link`, `search`, `review`
 - [x] `_learner` normalisation, backups, atomic writes, path containment
 - [x] panel: branch tree, KPIs, weak/due, activity, SVG graph, record form
 - [x] collapsible sidebars; 3/2/1-column responsive layout
 - [x] 23 plugin tests; 412 panel selfcheck checks
-- [x] demo data and sanitized open-source repo
 
 ## 0.2 — course registration
 
@@ -19,7 +27,6 @@
 ## 0.3 — review and search
 
 - [ ] server-side `/api/learning-hub/search` (concept, alias, error)
-- [ ] write `reviews.json` back from `record` with a single source of truth
 - [ ] review queue grouped by branch and overdue age
 - [ ] export/import a learner folder as a zip
 

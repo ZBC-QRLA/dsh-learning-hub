@@ -17,7 +17,7 @@ Adversaries considered:
 - accidental exposure through a tunnel/reverse proxy;
 - a contributor accidentally committing real learner data to a public repo.
 
-Out of scope for 0.1: multi-user auth, remote access control, encryption at rest.
+Out of scope for 0.1.1: multi-user accounts, remote access control, encryption at rest.
 
 ## Controls
 
@@ -29,12 +29,13 @@ Out of scope for 0.1: multi-user auth, remote access control, encryption at rest
 | Path containment | `realpath` + `isInside` for data and panel assets; `..`, absolute paths, NUL rejected |
 | Atomic writes | temp file + rename; no partial JSON |
 | Backups | pre-write snapshot in `_learner/.backups/` (default 20) |
-| No credentials | plugin never reads tokens/passwords; local data only |
-| No network | plugin makes no outbound requests |
+| Browser auth | `GET /learning-hub/auth` uses DSH's browser auth, 302 to `/?token=…`, sets a 30-day HttpOnly cookie; only loopback authority; rejects forwarded/CF headers |
+| No credentials in data | plugin never writes tokens/passwords to `_learner`; cookie stays in the browser |
+| No outbound network | plugin makes no external requests |
 
 ## Known limitations
 
-- There is **no authentication** on `/learning-hub/`; anyone who can reach the loopback port can read the panel. Do not expose it through a public tunnel/reverse proxy without adding auth.
+- The panel uses DSH's loopback browser auth (30-day HttpOnly cookie). This is **not** multi-user auth and does not make remote exposure safe; do not put it behind a public tunnel/reverse proxy.
 - `state` includes evidence text and paths; treat the panel as sensitive.
 - Browser `localStorage` stores only panel UI preferences (collapsed sidebars), not learner data.
 - The plugin trusts the DSH host for workspace isolation; cross-workspace file access is governed by the host's policy.

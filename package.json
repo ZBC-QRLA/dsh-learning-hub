@@ -1,6 +1,6 @@
 {
   "name": "dsh-learning-hub",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A local-first DSH plugin that exposes a learning_hub tool and a read-only learning dashboard backed by plain _learner files.",
   "type": "module",
   "main": "lib/index.js",

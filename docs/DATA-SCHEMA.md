@@ -9,10 +9,10 @@ All data lives in the directory configured as `dataRoot` (the `_learner` folder)
 | `profile.md` | YAML frontmatter + Markdown body | learner profile and teaching preferences |
 | `branches.json` | `{ version, branches: [] }` | course → concept tree |
 | `concepts.json` | `{ version, concepts: [] }` | concept graph, mastery, evidence |
-| `progress.jsonl` | one JSON object per line | append-only learning events |
+| `progress.jsonl` | one JSON object per line | append-only learning events (`seed:true` fixtures, `seed:false` real) |
 | `errors.json` | `{ version, errors: [] }` | misconception/error ledger |
-| `reviews.json` | `{ version, reviews: [] }` | review schedule |
-| `sessions.jsonl` | one JSON object per line | routing/session log |
+| `reviews.json` | `{ version, reviews: [] }` | review schedule; `record` syncs the target row |
+| `sessions.jsonl` | one JSON object per line | routing/session log; real rows carry `session` + `seed:false` |
 | `materials/index.md` | Markdown table | material index |
 | `.backups/` | copies | pre-write backups, kept per file (default 20) |
 
@@ -75,6 +75,8 @@ The body should contain “current state” and “next step” so a new session
       "prereq": ["cs.c.array"],
       "related": [],
       "mastery": 1,
+      "seed": false,
+      "mastery_basis": "recorded_evidence",
       "evidence": ["homework-4 Q3"],
       "misconceptions": ["Incrementing an array name"],
       "sources": ["course notes"],
@@ -92,15 +94,16 @@ Invariants:
 - `mastery` is an integer 0–5.
 - `next_review` is `YYYY-MM-DD` or `null`.
 - `evidence` is a list of traceable strings. A missing or empty list means “not assessed”, not “known”.
+- `seed:true` concepts keep mastery 0/1 and placeholder evidence; `seed:false` concepts may use 0–5 and real evidence, with `mastery_basis` (for example `recorded_evidence`).
 
 ## progress.jsonl
 
 ```json
-{"ts":"2026-10-26T20:00:00+08:00","branch":"cs.c","unit":"Pointers and Addresses","action":"practice","mastery":2,"evidence":"homework-4 Q3","concept":"cs.c.pointer","session":"sess-1"}
+{"ts":"2026-10-26T20:00:00+08:00","branch":"cs.c","unit":"Pointers and Addresses","action":"practice","mastery":2,"evidence":"homework-4 Q3","concept":"cs.c.pointer","session":"sess-1","seed":false}
 ```
 
 `action` ∈ `study | practice | exam | review | misconception`.
-The file is append-only; the plugin never rewrites history.
+The file is append-only; the plugin never rewrites history. Real records require non-placeholder evidence and a session; seed fixtures use `seed:true` and placeholder evidence.
 
 ## errors.json
 
@@ -133,12 +136,12 @@ The file is append-only; the plugin never rewrites history.
 }
 ```
 
-`reviews.json` is merged read-only into `due_reviews`; `record` updates `concepts.next_review` (it does not write `reviews.json`). Keep the two consistent if editing by hand.
+`reviews.json` is merged into `due_reviews`; `record` updates the target concept's `next_review` and the matching review row (`due`, `mastery`, `interval_days`, `status`, `last_reviewed`). Keep both consistent if editing by hand.
 
 ## sessions.jsonl
 
 ```json
-{"ts":"2026-10-26T20:00:00+08:00","cwd":"/path/to/c-course","primary":"cs.c","secondary":[],"confidence":0.91,"reason":"cwd + keywords"}
+{"ts":"2026-10-26T20:00:00+08:00","cwd":"/path/to/c-course","primary":"cs.c","secondary":[],"confidence":0.91,"reason":"cwd + keywords","session":"sess-1","seed":false}
 ```
 
 ## Mastery scale

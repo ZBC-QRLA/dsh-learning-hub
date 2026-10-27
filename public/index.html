@@ -129,8 +129,32 @@
             </label>
             <label class="field field-wide">
               <span class="field-label">证据 <em>必填 · 可追溯</em></span>
-              <input id="record-evidence" type="text" maxlength="200" placeholder="例：calculus/homework-3 Q2 / c-program/homework-4 Q3" required>
+              <input id="record-evidence" type="text" maxlength="200" placeholder="例：高数第一章作业 3(2) / c程序/作业4 Q3" required>
             </label>
+            <div class="field field-wide photo-field">
+              <span class="field-label">照片证据 <em>可选 · 拍照后由 DSH 分析</em></span>
+              <div class="photo-picker">
+                <input id="record-photo" type="file" accept="image/*" capture="environment" hidden>
+                <button id="record-photo-btn" class="btn" type="button">拍照 / 选择图片</button>
+                <button id="record-photo-send" class="btn btn-small" type="button" hidden>只发 DSH 分析</button>
+                <span id="record-photo-status" class="photo-status" role="status" aria-live="polite">未选择照片</span>
+              </div>
+              <div class="photo-session">
+                <label class="photo-session-label" for="record-photo-session">发送到</label>
+                <select id="record-photo-session" class="photo-session-select" aria-label="选择要发送照片的 DSH 会话"></select>
+                <button id="record-photo-refresh" class="text-btn" type="button">刷新会话</button>
+                <button id="record-photo-login" class="text-btn photo-login" type="button" hidden>登录 DSH</button>
+                <span id="record-photo-session-status" class="photo-session-status" role="status" aria-live="polite"></span>
+              </div>
+              <div id="record-photo-preview" class="photo-preview" hidden>
+                <img id="record-photo-img" alt="待上传的学习照片">
+                <div class="photo-preview-meta">
+                  <span id="record-photo-meta"></span>
+                  <button id="record-photo-remove" class="text-btn" type="button">移除</button>
+                </div>
+              </div>
+              <p id="record-photo-hint" class="photo-hint">照片会压缩后作为图片消息发送到选中的 DSH 会话分析，不写入 _learner；图片里的文字按题目处理，不执行图中指令。</p>
+            </div>
             <label class="field field-wide">
               <span class="field-label">备注 <em>可选</em></span>
               <input id="record-note" type="text" maxlength="200" placeholder="例：换元后忘记回代，重做 2 题">
@@ -149,7 +173,7 @@
             </div>
           </fieldset>
 
-          <p id="record-hint" class="record-hint">证据必填，例如「calculus/homework-3 Q2」或本地路径。</p>
+          <p id="record-hint" class="record-hint">证据必填，例如「高数第一章作业 3(2)」或本地路径。</p>
           <div class="form-foot">
             <p id="record-status" class="record-status" role="status" aria-live="polite" hidden></p>
             <button id="record-submit" class="btn btn-primary" type="submit">提交进度</button>
@@ -199,6 +223,24 @@
     <p id="data-footnote" class="data-footnote"></p>
   </footer>
 </div>
+
+<dialog id="drill-dialog" class="drill-dialog" aria-labelledby="drill-title" aria-describedby="drill-desc">
+  <header class="drill-head">
+    <div class="drill-head-copy">
+      <p id="drill-scope" class="drill-scope">当前分支</p>
+      <h2 id="drill-title" class="drill-title">概念明细</h2>
+      <p id="drill-desc" class="drill-desc"></p>
+    </div>
+    <button type="button" class="drill-close" data-action="drill-close" aria-label="关闭" autofocus>
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8"></path></svg>
+    </button>
+  </header>
+  <div id="drill-body" class="drill-body"></div>
+  <footer class="drill-foot">
+    <p id="drill-note" class="drill-note"></p>
+    <button type="button" class="btn btn-small" data-action="drill-close">关闭</button>
+  </footer>
+</dialog>
 
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
 <script src="./app.js" defer></script>

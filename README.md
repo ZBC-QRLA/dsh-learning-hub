@@ -12,7 +12,24 @@ It turns plain Markdown/JSON files in a `_learner` directory into:
 
 There is no database, no CDN, no telemetry and no cloud dependency. The data stays in your `_learner` folder and can be read, diffed, backed up and edited by hand.
 
-> Status: **0.1.0, early**. The data schema and tool actions may evolve. See [ROADMAP](docs/ROADMAP.md).
+> Status: **0.1.1, early**. The data schema and tool actions may evolve. See [ROADMAP](docs/ROADMAP.md).
+
+## Changelog
+
+### 0.1.1 — 2026-10-27
+
+- **Dashboard drilldown**: click KPI cards, mastery buckets, the stacked bar, or hero stats to inspect the concepts behind the number in a native dialog.
+- **Photo to DSH**: the record form can attach a photo, compress it in the browser, and send it to a selected DSH session over same-origin RPC.
+- **One-click DSH login**: `GET /learning-hub/auth` redirects through DSH's browser auth and sets an HttpOnly cookie; the panel then loads `session/list` and `session/prompt` without manual token handling.
+- **Mixed seed/real mode**: `seed:true` fixture rows stay strict; real `record` rows use `seed:false` + a session id + non-placeholder evidence.
+- **Session and review sync**: `record` creates/reuses a `sessions.jsonl` row and updates the matching `reviews.json` entry (`due`, `mastery`, `interval_days`, `status`, `last_reviewed`) on every concept update.
+- **Safer evidence gate**: empty evidence or `seed:` / `待补充` / `示例:` placeholders are rejected before anything is written.
+- Tests: **34 plugin tests** + **523 panel selfcheck checks**.
+
+### 0.1.0 — 2026-10-26
+
+- Initial open-source release: `learning_hub` tool, branch/concept graph, dashboard, records, spaced review, local HTTP API, demo `_learner`.
+- Tests: 23 plugin tests + 412 panel selfcheck checks.
 
 ---
 
@@ -27,7 +44,10 @@ There is no database, no CDN, no telemetry and no cloud dependency. The data sta
 | Review | 1 / 3 / 7 / 14-day schedule; `review` returns due concepts |
 | Routing | cwd, keywords, branch names and concept names → primary/secondary branch + confidence |
 | Dashboard | collapsible sidebars, desktop/tablet/mobile layouts, light/dark, no build step |
+| Drilldown | click KPI / distribution / stacked bar / hero stats to inspect the concepts behind a number |
+| Photo to DSH | compress a photo in the browser and send it to a selected DSH session over same-origin RPC |
 | Safe writes | loopback-only HTTP, same-origin writes, realpath containment, 64 KiB body limit, pre-write backups |
+| Mixed data | seed fixtures and real `record` rows can coexist; real rows carry `seed:false`, session and evidence |
 
 ## Requirements
 
@@ -41,7 +61,7 @@ There is no database, no CDN, no telemetry and no cloud dependency. The data sta
 dsh plugin --profile desktop add D:\path\to\dsh-learning-hub
 
 # 2. Point the plugin at your learner data and the bundled panel
-#    Edit D:\dsh\profiles\desktop\cordis.patch.yml:
+#    Edit <DSH_HOME>\profiles\desktop\cordis.patch.yml:
 ```
 
 ```yaml
@@ -67,8 +87,8 @@ Without any config, the plugin uses the bundled demo:
 ## Quick start (demo)
 
 ```powershell
-node --test             # plugin tests
-node test/panel-selfcheck.mjs
+node --test                    # 35 tests (34 plugin + panel selfcheck)
+node test/panel-selfcheck.mjs  # 523 panel checks
 ```
 
 Open `public/index.html` via any static server, or install the plugin and open `/learning-hub/`.
@@ -95,6 +115,7 @@ One tool, several actions:
 |---|---|---|
 | `/learning-hub` | GET | 302 → `/learning-hub/` |
 | `/learning-hub/` | GET | dashboard |
+| `/learning-hub/auth` | GET | 302 → DSH `/?token=…`; sets a 30-day HttpOnly cookie |
 | `/learning-hub/<asset>` | GET | static assets |
 | `/api/learning-hub/state` | GET | canonical state |
 | `/api/learning-hub/record` | POST | append a record |
@@ -118,18 +139,20 @@ materials/index.md
 .backups/          # created by the plugin before writes
 ```
 
-A concept has `id`, `name`, `aliases`, `branches`, `prereq`, `related`, `mastery` (0–5), `evidence`, `misconceptions`, `sources`, `next_review`.
+A concept has `id`, `name`, `aliases`, `branches`, `prereq`, `related`, `mastery` (0–5), `evidence`, `misconceptions`, `sources`, `next_review`, plus `seed` and `mastery_basis` in mixed mode.
 Prerequisites are directed and acyclic; related links are symmetric.
-See [docs/DATA-SCHEMA.md](docs/DATA-SCHEMA.md).
+
+Seed rows keep `seed:true` and placeholder evidence; a real `record` writes `seed:false`, appends a real evidence string, adds a `session`, and syncs the matching `reviews.json` row. See [docs/DATA-SCHEMA.md](docs/DATA-SCHEMA.md).
 
 ## Security and privacy
 
-- Local data only; no network calls, no telemetry, no credentials.
+- Local data only; no outbound network calls, no telemetry, no credentials in `_learner`.
 - HTTP is loopback-only; writes require a same-origin `Origin`/`Referer` and JSON.
+- The panel uses DSH's browser auth via `GET /learning-hub/auth` (30-day HttpOnly cookie); no token is returned in JSON or stored in `_learner`.
 - Static paths are realpath-checked; `..`, absolute paths, symlink escapes and NUL bytes are rejected.
 - Every write is atomic and backed up under `_learner/.backups/`.
 
-Please read [SECURITY.md](docs/SECURITY.md) before exposing the panel through a tunnel or reverse proxy. The current version has **no remote auth**; do not put it on the public internet.
+Please read [SECURITY.md](docs/SECURITY.md) before exposing the panel through a tunnel or reverse proxy. Authentication is for the local DSH browser only; this is **not** a multi-user or remote-access product.
 
 ## Development
 

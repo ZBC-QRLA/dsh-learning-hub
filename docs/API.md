@@ -58,6 +58,7 @@ All routes are served by the DSH web server; the plugin only claims its own path
 |---|---|---|
 | `/learning-hub` | GET | 302 to `/learning-hub/` |
 | `/learning-hub/` | GET | dashboard |
+| `/learning-hub/auth` | GET | 302 to DSH `/?token=…`; sets a 30-day HttpOnly cookie (loopback only) |
 | `/learning-hub/<asset>` | GET | static asset from `panelDir` |
 | `/api/learning-hub/state` | GET | canonical state |
 | `/api/learning-hub/record` | POST | same body as tool `record` (without `action`) |
@@ -88,6 +89,8 @@ Branch objects also carry camelCase (`masteryAvg`, `conceptCount`, `dueCount`) a
 ```json
 {"branch":"cs.c","unit":"Pointers and Addresses","event":"practice","mastery":2,"evidence":"homework-4 Q3"}
 ```
+
+`evidence` is required and must not be a seed/`待补充`/`示例` placeholder. The plugin creates/reuses a session id, appends a matching `sessions.jsonl` row, writes `progress` with `seed:false`, flips a seed concept to `seed:false + mastery_basis:"recorded_evidence"`, and syncs the matching `reviews.json` row.
 
 ### route
 
